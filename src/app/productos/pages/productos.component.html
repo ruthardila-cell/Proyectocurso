@@ -1,0 +1,33 @@
+<ActionBar title="Productos"></ActionBar>
+
+<ScrollView>
+  <StackLayout class="page__content">
+
+    <Label
+      text="Lista de productos"
+      class="h2 text-center m-b-20">
+    </Label>
+
+    <StackLayout
+      *ngFor="let producto of productos"
+      class="m-b-20 p-10">
+
+      <Label
+        [text]="producto.nombre"
+        class="h3">
+      </Label>
+
+      <Label
+        [text]="producto.descripcion"
+        textWrap="true">
+      </Label>
+
+      <Label
+        [text]="'$' + producto.precio"
+        class="h4">
+      </Label>
+
+    </StackLayout>
+
+  </StackLayout>
+</ScrollView>

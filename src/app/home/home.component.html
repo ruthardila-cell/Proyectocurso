@@ -1,0 +1,30 @@
+<ActionBar title="Productos"></ActionBar>
+
+<ScrollView>
+  <StackLayout class="page__content">
+
+    <Image
+      src="~/App_Resources/images/productos.png"
+      stretch="aspectFit"
+      height="220">
+    </Image>
+
+    <Label
+      text="Nuestros productos"
+      class="h1 text-center">
+    </Label>
+
+    <Label
+      text="Conoce nuestros productos y descubre las mejores opciones para ti."
+      textWrap="true"
+      class="body text-center">
+    </Label>
+
+    <Button
+      text="Ver productos"
+      class="btn btn-primary"
+      (tap)="onViewProducts()">
+    </Button>
+
+  </StackLayout>
+</ScrollView>

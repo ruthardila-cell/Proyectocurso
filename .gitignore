@@ -1,0 +1,6 @@
+node_modules/ 
+platforms/ 
+.angular/ 
+ProyectoCurso_Copia/ 
+ProyectoCurso_Entrega/ 
+*.log 
