@@ -1,13 +1,59 @@
-<ActionBar class="action-bar">
-  <NavigationButton visibility="hidden"></NavigationButton>
-  <GridLayout columns="50, *">
-    <Label class="action-bar-title" text="Search" colSpan="2"></Label>
+<ActionBar title="Buscar productos"></ActionBar>
 
-    <Label class="fas" text="&#xf0c9;" (tap)="onDrawerButtonTap()"></Label>
-  </GridLayout>
-</ActionBar>
+<StackLayout class="page__content">
 
-<GridLayout class="page__content">
-  <Label class="page__content-icon fas" text="&#xf002;"></Label>
-  <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+  <Label
+    text="Buscar productos"
+    class="h2 text-center">
+  </Label>
+
+  <TextField
+    hint="Escribe al menos 3 caracteres"
+    [(ngModel)]="textoBusqueda"
+    appMinimoCaracteres
+    (textChange)="buscarProducto()">
+  </TextField>
+
+  <Label
+    *ngIf="textoBusqueda.length > 0 && textoBusqueda.length < 3"
+    text="Debes escribir al menos 3 caracteres."
+    class="text-danger">
+  </Label>
+
+  <ListView
+    [items]="productosFiltrados"
+    class="list-group">
+
+    <ng-template let-producto="item">
+
+      <FlexboxLayout
+        flexDirection="row"
+        justifyContent="space-between"
+        class="p-10">
+
+        <FlexboxLayout flexDirection="column">
+
+          <Label
+            [text]="producto.nombre"
+            class="h3">
+          </Label>
+
+          <Label
+            [text]="producto.descripcion"
+            textWrap="true">
+          </Label>
+
+        </FlexboxLayout>
+
+        <Label
+          [text]="'$' + producto.precio"
+          class="h4">
+        </Label>
+
+      </FlexboxLayout>
+
+    </ng-template>
+
+  </ListView>
+
+</StackLayout>

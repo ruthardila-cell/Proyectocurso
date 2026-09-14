@@ -1,33 +1,51 @@
 <ActionBar title="Productos"></ActionBar>
 
-<ScrollView>
-  <StackLayout class="page__content">
+<PullToRefresh
+  (refresh)="onPullToRefresh($event)">
 
-    <Label
-      text="Lista de productos"
-      class="h2 text-center m-b-20">
-    </Label>
+  <ListView [items]="productos">
 
-    <StackLayout
-      *ngFor="let producto of productos"
-      class="m-b-20 p-10">
+    <ng-template let-producto="item">
 
-      <Label
-        [text]="producto.nombre"
-        class="h3">
-      </Label>
+      <StackLayout class="m-b-20 p-10">
 
-      <Label
-        [text]="producto.descripcion"
-        textWrap="true">
-      </Label>
+        <StackLayout
+          (tap)="onProductoTap(producto)">
 
-      <Label
-        [text]="'$' + producto.precio"
-        class="h4">
-      </Label>
+          <Label
+            [text]="producto.nombre"
+            class="h3">
+          </Label>
 
-    </StackLayout>
+          <Label
+            [text]="producto.descripcion"
+            textWrap="true">
+          </Label>
 
-  </StackLayout>
-</ScrollView>
+          <Label
+            [text]="'$' + producto.precio"
+            class="h4">
+          </Label>
+
+        </StackLayout>
+
+        <Button
+          text="Seleccionar categoría"
+          (tap)="seleccionarCategoria(producto); animarBoton($event)"
+          (longPress)="onProductoLongPress(producto)"
+          class="m-t-10">
+        </Button>
+
+        <Label
+          *ngIf="producto.categoria"
+          [text]="'Categoría: ' + producto.categoria"
+          class="m-t-5">
+        </Label>
+
+      </StackLayout>
+
+    </ng-template>
+
+  </ListView>
+
+</PullToRefresh>
