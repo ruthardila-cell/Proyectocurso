@@ -5,17 +5,23 @@ import { PullToRefresh } from '@nativescript-community/ui-pulltorefresh'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { StoreModule } from '@ngrx/store';
+import { readingReducer } from './store/reading.reducer';
 import { MinimoCaracteresDirective } from './shared/directives/minimo-caracteres.directive'
 
 registerElement('PullToRefresh', () => PullToRefresh);
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [
-    AppRoutingModule,
-    NativeScriptModule,
-    NativeScriptUISideDrawerModule
-  ],
+imports: [
+  AppRoutingModule,
+  NativeScriptModule,
+  NativeScriptUISideDrawerModule,
+
+  StoreModule.forRoot({
+    reading: readingReducer
+  })
+],
   declarations: [
     AppComponent,
     MinimoCaracteresDirective

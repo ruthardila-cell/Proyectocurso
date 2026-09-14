@@ -1,22 +1,32 @@
-import { Component, OnInit } from '@angular/core'
-import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
-import { Application } from '@nativescript/core'
+import { Component, OnInit } from '@angular/core';
+import { ApplicationSettings } from '@nativescript/core';
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import { Application } from '@nativescript/core';
 
 @Component({
   selector: 'Settings',
   templateUrl: './settings.component.html',
 })
 export class SettingsComponent implements OnInit {
-  constructor() {
-    // Use the component constructor to inject providers.
-  }
+
+  nombreUsuario = '';
+
+  constructor() {}
 
   ngOnInit(): void {
-    // Init your component properties here.
+    this.nombreUsuario =
+      ApplicationSettings.getString('nombreUsuario', '');
+  }
+
+  guardarNombre(): void {
+    ApplicationSettings.setString(
+      'nombreUsuario',
+      this.nombreUsuario
+    );
   }
 
   onDrawerButtonTap(): void {
-    const sideDrawer = <RadSideDrawer>Application.getRootView()
-    sideDrawer.showDrawer()
+    const sideDrawer = <RadSideDrawer>Application.getRootView();
+    sideDrawer.showDrawer();
   }
 }

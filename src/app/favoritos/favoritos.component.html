@@ -1,0 +1,42 @@
+<ActionBar title="Favoritos"></ActionBar>
+
+<StackLayout class="page__content">
+
+  <Label
+    text="Mis favoritos"
+    class="h2 text-center">
+  </Label>
+
+  <ListView [items]="favoritos">
+
+    <ng-template let-producto="item">
+
+      <StackLayout class="p-10">
+
+        <Label
+          [text]="producto.nombre"
+          class="h3">
+        </Label>
+
+        <Label
+          [text]="producto.descripcion"
+          textWrap="true">
+        </Label>
+
+        <Label
+          [text]="'$' + producto.precio"
+          class="h4">
+        </Label>
+
+        <Button
+          text="Leer ahora"
+          (tap)="leerProducto(producto)">
+        </Button>
+
+      </StackLayout>
+
+    </ng-template>
+
+  </ListView>
+
+</StackLayout>

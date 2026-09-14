@@ -26,5 +26,37 @@
       (tap)="onViewProducts()">
     </Button>
 
+    <Label
+      text="Productos para leer ahora"
+      class="h2 text-center m-t-20">
+    </Label>
+
+    <ListView [items]="productosLeidos$ | async">
+
+      <ng-template let-producto="item">
+
+        <StackLayout class="p-10">
+
+          <Label
+            [text]="producto.nombre"
+            class="h3">
+          </Label>
+
+          <Label
+            [text]="producto.descripcion"
+            textWrap="true">
+          </Label>
+
+          <Label
+            [text]="'$' + producto.precio"
+            class="h4">
+          </Label>
+
+        </StackLayout>
+
+      </ng-template>
+
+    </ListView>
+
   </StackLayout>
 </ScrollView>

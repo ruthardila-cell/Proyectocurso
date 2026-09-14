@@ -8,11 +8,15 @@
   </Label>
 
   <TextField
-    hint="Escribe al menos 3 caracteres"
+    hint="Escribe el nombre del producto"
     [(ngModel)]="textoBusqueda"
-    appMinimoCaracteres
-    (textChange)="buscarProducto()">
+    appMinimoCaracteres>
   </TextField>
+
+  <Button
+    text="Buscar"
+    (tap)="buscarProductos()">
+  </Button>
 
   <Label
     *ngIf="textoBusqueda.length > 0 && textoBusqueda.length < 3"
@@ -20,18 +24,15 @@
     class="text-danger">
   </Label>
 
-  <ListView
-    [items]="productosFiltrados"
-    class="list-group">
+  <ListView [items]="productosFiltrados">
 
     <ng-template let-producto="item">
 
-      <FlexboxLayout
-        flexDirection="row"
-        justifyContent="space-between"
+      <GridLayout
+        columns="*, auto"
         class="p-10">
 
-        <FlexboxLayout flexDirection="column">
+        <StackLayout col="0">
 
           <Label
             [text]="producto.nombre"
@@ -43,17 +44,24 @@
             textWrap="true">
           </Label>
 
-        </FlexboxLayout>
+          <Label
+            [text]="'$' + producto.precio"
+            class="h4">
+          </Label>
 
-        <Label
-          [text]="'$' + producto.precio"
-          class="h4">
-        </Label>
+        </StackLayout>
 
-      </FlexboxLayout>
+        <Button
+          col="1"
+          text="★"
+          (tap)="guardarFavorito(producto)">
+        </Button>
+
+      </GridLayout>
 
     </ng-template>
 
   </ListView>
 
 </StackLayout>
+
