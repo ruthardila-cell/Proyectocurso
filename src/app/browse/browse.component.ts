@@ -3,8 +3,9 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
 import { Application } from '@nativescript/core'
 
 @Component({
-  selector: 'Browse',
+  selector: 'ns-browse',
   templateUrl: './browse.component.html',
+  standalone: false,
 })
 export class BrowseComponent implements OnInit {
   constructor() {

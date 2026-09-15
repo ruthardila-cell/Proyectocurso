@@ -5,7 +5,8 @@ import { leerAhora } from '../store/reading.actions';
 
 @Component({
   selector: 'app-favoritos',
-  templateUrl: './favoritos.component.html'
+  templateUrl: './favoritos.component.html',
+  standalone: false,
 })
 export class FavoritosComponent implements OnInit {
 

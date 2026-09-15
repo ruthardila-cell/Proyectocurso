@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "292142234323",
+    "project_id": "proyectocurso-a5ea7",
+    "storage_bucket": "proyectocurso-a5ea7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292142234323:android:d02df97f9eef3d1542b226",
+        "android_client_info": {
+          "package_name": "org.nativescript.ProyectoCurso"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYAaAn0FuMOO08EsAxiLg6hdQdciuzOzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

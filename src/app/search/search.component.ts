@@ -4,7 +4,8 @@ import { FavoritosService } from '../services/favoritos.service';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html'
+  templateUrl: './search.component.html',
+  standalone: false,
 })
 export class SearchComponent {
 

@@ -8,18 +8,24 @@ import {
 } from 'nativescript-ui-sidedrawer'
 import { filter } from 'rxjs/operators'
 import { Application } from '@nativescript/core'
+import { firebase } from '@nativescript/firebase'
+import { messaging } from '@nativescript/firebase/messaging'
 
 @Component({
   selector: 'ns-app',
   templateUrl: 'app.component.html',
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   private _activatedUrl: string
   private _sideDrawerTransition: DrawerTransitionBase
 
-  constructor(private router: Router, private routerExtensions: RouterExtensions) {
-    // Use the component constructor to inject services.
-  }
+  firebaseToken = 'Obteniendo token de Firebase...'
+
+  constructor(
+    private router: Router,
+    private routerExtensions: RouterExtensions
+  ) {}
 
   ngOnInit(): void {
     this._activatedUrl = '/home'
@@ -27,7 +33,50 @@ export class AppComponent implements OnInit {
 
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => (this._activatedUrl = event.urlAfterRedirects))
+      .subscribe(
+        (event: NavigationEnd) =>
+          (this._activatedUrl = event.urlAfterRedirects)
+      )
+
+    firebase
+      .init()
+      .then(() => {
+        console.log('Firebase inicializado correctamente')
+
+        messaging.initFirebaseMessaging()
+
+        messaging
+          .registerForPushNotifications()
+          .then(() => {
+            console.log('Notificaciones push registradas')
+
+            messaging
+              .getCurrentPushToken()
+              .then((token) => {
+                console.log('TOKEN FIREBASE:', token)
+                this.firebaseToken = token
+              })
+              .catch((error) => {
+                console.log('Error obteniendo token:', error)
+                this.firebaseToken = 'No se pudo obtener el token'
+              })
+          })
+          .catch((error) => {
+            console.log('Error registrando notificaciones:', error)
+          })
+
+        messaging.addOnPushTokenReceivedCallback((token) => {
+          console.log('NUEVO TOKEN FIREBASE:', token)
+          this.firebaseToken = token
+        })
+
+        messaging.addOnMessageReceivedCallback((message) => {
+          console.log('NOTIFICACION RECIBIDA:', message)
+        })
+      })
+      .catch((error) => {
+        console.log('Error al inicializar Firebase:', error)
+      })
   }
 
   get sideDrawerTransition(): DrawerTransitionBase {

@@ -6,6 +6,7 @@ import { Application } from '@nativescript/core';
 @Component({
   selector: 'Settings',
   templateUrl: './settings.component.html',
+  standalone: false,
 })
 export class SettingsComponent implements OnInit {
 

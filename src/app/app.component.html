@@ -63,7 +63,21 @@
     </ScrollView>
   </GridLayout>
 
-  <GridLayout tkMainContent>
-    <page-router-outlet></page-router-outlet>
-  </GridLayout>
-</RadSideDrawer>
+<GridLayout tkMainContent rows="auto, *">
+
+  <StackLayout row="0" class="p-10">
+    <Label
+      text="Token de Firebase:"
+      class="h3"
+    ></Label>
+
+    <Label
+      [text]="firebaseToken"
+      textWrap="true"
+      class="p-5"
+    ></Label>
+  </StackLayout>
+
+  <page-router-outlet row="1"></page-router-outlet>
+
+</GridLayout>

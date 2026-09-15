@@ -8,6 +8,7 @@ import { selectProductos } from '../store/reading.selectors'
 @Component({
   selector: 'Home',
   templateUrl: './home.component.html',
+  standalone: false, 	
 })
 export class HomeComponent implements OnInit {
 

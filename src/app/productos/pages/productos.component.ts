@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
 import { action } from '@nativescript/core';
-import { Toasty, ToastDuration } from 'nativescript-toasty';
 import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-productos',
-  templateUrl: './productos.component.html'
+  templateUrl: './productos.component.html',
+  standalone: false,
 })
 export class ProductosComponent {
 
@@ -36,25 +36,13 @@ export class ProductosComponent {
 
       if (resultado && resultado !== 'Cancelar') {
         producto.categoria = resultado;
-
-        const toast = new Toasty({
-          text: 'Categoría seleccionada: ' + resultado,
-          duration: ToastDuration.LONG
-        });
-
-        toast.show();
       }
 
     });
   }
 
   onProductoLongPress(producto: any) {
-    const toast = new Toasty({
-      text: 'Pulsación larga: ' + producto.nombre,
-      duration: ToastDuration.SHORT
-    });
-
-    toast.show();
+    console.log('Pulsación larga: ' + producto.nombre);
   }
 
   animarBoton(args: any) {
